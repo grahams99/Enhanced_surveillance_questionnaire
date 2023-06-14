@@ -9,14 +9,13 @@ This study used nationwide vaccination and COVID-19 PCR testing data from one of
 
 * A preprint of the manuscript is available [here](https://assets.researchsquare.com/files/rs-2409555/v1/55eb23e9979706568611d214.pdf?c=1673302876)
 
-                               ### Summary of analysis code
-                               (1) **Surveillance Questionnaire R script_github.R**
-                                 * Reads in the data
-                               * Sets variable classes
-                               * Provides a description of patients that are vaccinated versus non-vaccinated and cases versus negative controls
-                               * Provides a description for each potential bias
-                               * Updates the model accounting for each potential bias separately
-                               * Updates the full model accounting for all potential biases at once
+### Summary of analysis code
+* Reads in the data
+* Sets variable classes
+* Provides a description of patients that are vaccinated versus non-vaccinated and cases versus negative controls
+* Provides a description for each potential bias
+* Updates the model accounting for each potential bias separately
+* Updates the full model accounting for all potential biases at once
 
 
 
