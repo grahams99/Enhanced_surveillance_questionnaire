@@ -55,13 +55,13 @@ data <- import("[removed for UKHSA privacy reasons]")
 
 ##remove duplicates based on patid
 ##check how many duplicates there are 
-#sum(table(QTND$patid)-1)
+sum(table(QTND$patid)-1)
 ##remove duplicates 
 data <- distinct(data,patid, .keep_all = TRUE)
 
 #remove individuals with previous infections
-#QTND %>% tabyl(pos_dec7, idcompleted)
-#QTND %>% tabyl(pospriortocohort, idcompleted)
+QTND %>% tabyl(pos_dec7, idcompleted)
+QTND %>% tabyl(pospriortocohort, idcompleted)
 
 #replace blank cells with NA
 data[data == ""] <- NA
@@ -1007,10 +1007,10 @@ data %<>%
   )
 
 #how many individuals completed the questionnaire
-#addmargins(table(Qneg$idcompleted)) 
+addmargins(table(Qneg$idcompleted)) 
 
-#df = table(QTND$idcompleted)
-#prop.table(df)*100
+df = table(QTND$idcompleted)
+prop.table(df)*100
 
 #split data into respondents and non-respondents 
 datares <- subset(data, idcompleted=="completed")
@@ -1052,7 +1052,7 @@ mutate(
   )
 )
 
-#QTNDres %>% tabyl(Date_differce_dose1_q_vs_TND, show_na = FALSE)
+QTNDres %>% tabyl(Date_differce_dose1_q_vs_TND, show_na = FALSE)
 
 #Describe those with different dates 
 #data of those with missing dates
@@ -1098,7 +1098,7 @@ QTNDres %>%
 
 hist(QTNDres$Date_difference_dose2, col="#74a9cf", main="Difference between questionnaire and NIMS vaccination dose 2 date", xlab="Days", xlim=c(-100,100))
 
-#QTNDres %<>%
+QTNDres %<>%
 mutate(
   Date_differce_dose2_q_vs_TND = factor(
     case_when(
@@ -1111,7 +1111,7 @@ mutate(
   )
 )
 
-#QTNDres %>% tabyl(Date_differce_dose2_q_vs_TND, show_na = FALSE)
+QTNDres %>% tabyl(Date_differce_dose2_q_vs_TND, show_na = FALSE)
 
 #Vaccination status with vaccination date from the questionnaire
 #first create vaccination dates that use the questionnaire date (dose1_date2), but if missing uses TND - dose 1
@@ -1161,8 +1161,8 @@ QTNDres %<>%
     )
   )
 
-#QTNDres %>% tabyl(vaccine_status_TND_qonset)
-#QTNDres %>% tabyl(vaccine_status_TND_onset)
+QTNDres %>% tabyl(vaccine_status_TND_qonset)
+QTNDres %>% tabyl(vaccine_status_TND_onset)
 
 #Describe individuals with different dose 2
 #data of those with missing dates
@@ -1343,11 +1343,11 @@ mutate(
   )
 )
 
-#QTNDres %>% tabyl(Date_differce_onset_q_vs_TND, show_na = FALSE)
+QTNDres %>% tabyl(Date_differce_onset_q_vs_TND, show_na = FALSE)
 
 ##repeat using questionnaire onset 
 #first dose
-#QTNDres %<>%
+QTNDres %<>%
 mutate(
   qonset_after_vacc = factor(
     case_when(
@@ -1360,7 +1360,7 @@ mutate(
 )
 
 #second dose
-#QTNDres %<>%
+QTNDres %<>%
 mutate(
   qonset_after_vacc_dose_2 = factor(
     case_when(
@@ -1405,12 +1405,12 @@ QTNDres %<>%
     )
   )
 
-#QTNDres %>% tabyl(vaccine_status_TND_qonset)
-#QTNDres %>% tabyl(vaccine_status_TND_onset)
+QTNDres %>% tabyl(vaccine_status_TND_qonset)
+QTNDres %>% tabyl(vaccine_status_TND_onset)
 
 #UNMEASURED CONFOUNDERS
 #COVID-19 risk factors, CEV and frailty by vaccination status 
-#QTNDres %>%
+QTNDres %>%
 select(vaccine_status_TND_2levels_onset, no_ppl_household, accomodation_type_1, flu_vacc, Frail, cev2, CEV_flag_2611, CHD, CKD, CLD, CRD, asthma_med, cancer, organ_bone_transplant, HIV_immuno, immuno_med, immuno_all, seizure_dis, CND, asplenia, BMI_40, None_above_conditions) %>%
   tbl_summary(
     by = vaccine_status_TND_2levels_onset,
@@ -1444,7 +1444,7 @@ select(vaccine_status_TND_2levels_onset, no_ppl_household, accomodation_type_1, 
   add_p()
 
 #COVID-19 risk factors, CEV and frailty by test result 
-#QTNDres %>%
+QTNDres %>%
 select(res, no_ppl_household, accomodation_type_1, flu_vacc, Frail, cev2, CEV_flag_2611, CHD, CKD, CLD, CRD, asthma_med, cancer, immuno_all, organ_bone_transplant, HIV_immuno, immuno_med, seizure_dis, CND, asplenia, BMI_40, None_above_conditions) %>%
   tbl_summary(
     by = res,
@@ -1479,7 +1479,7 @@ select(res, no_ppl_household, accomodation_type_1, flu_vacc, Frail, cev2, CEV_fl
 
 #HEALTHY VACCINEE BIAS FROM VACCINE DELAY
 ##using dosage variable in questionnaire
-#QTNDres %>%
+QTNDres %>%
 select(doses2levels, dur_invite) %>%
   tbl_summary(
     by = doses2levels,
@@ -1493,7 +1493,7 @@ select(doses2levels, dur_invite) %>%
 
 ##amongst those that delayed the reason for delay
 #first describe by duration from invite 
-#QTNDres %>%
+QTNDres %>%
 select(dur_invite, not_aware_eleg, no_app_av, pref_wait, delayed_covid, isolating, vacc_time, vacc_other) %>%
   tbl_summary(
     by = dur_invite,
@@ -1519,7 +1519,7 @@ QTNDres_pos <- subset(QTNDres, res=="positive")
 QTNDres_neg <- subset(QTNDres, res=="negative")
 
 #amongst cases
-#QTNDres_pos %>%
+QTNDres_pos %>%
 select(vaccine_status_TND_2levels_onset, not_vacc_not_called, not_vacc_elig, not_vacc_app, not_vacc_prefer_not, not_vacc_soon, not_vacc_unwell, not_vacc_isol, not_vacc_time, not_vacc_other) %>%
   tbl_summary(
     by = vaccine_status_TND_2levels_onset,
@@ -1541,7 +1541,7 @@ select(vaccine_status_TND_2levels_onset, not_vacc_not_called, not_vacc_elig, not
   )
 
 #amongst controls
-#QTNDres_neg %>%
+QTNDres_neg %>%
 select(vaccine_status_TND_2levels_onset, not_vacc_not_called, not_vacc_elig, not_vacc_app, not_vacc_prefer_not, not_vacc_soon, not_vacc_unwell, not_vacc_isol, not_vacc_time, not_vacc_other) %>%
   tbl_summary(
     by = vaccine_status_TND_2levels_onset,
@@ -1563,7 +1563,7 @@ select(vaccine_status_TND_2levels_onset, not_vacc_not_called, not_vacc_elig, not
   )
 
 #by questionnaire number of doses
-#QTNDres %>%
+QTNDres %>%
 select(doses2levels, not_vacc_not_called, not_vacc_elig, not_vacc_app, not_vacc_prefer_not, not_vacc_soon, not_vacc_unwell, not_vacc_isol, not_vacc_time, not_vacc_other) %>%
   tbl_summary(
     by = doses2levels,
