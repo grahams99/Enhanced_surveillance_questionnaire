@@ -112,7 +112,7 @@ data %<>%
     diar = factor(
       diar,
       levels = c(0, 1),
-      labels = c("no Diarrhoea", "Diarrhoea")#not sure why there are no NAs for this
+      labels = c("no Diarrhoea", "Diarrhoea")
     ),
     CKD = factor(
       CKD,
@@ -1613,8 +1613,6 @@ QTNDres %>%
     ),
     missing_text = "Missing"
   )
-
-##there was no one that reported they had no doses and answered this question. As above, majority of individuals (65%) reported that they mixed the same amount, followed by mixing less (30%), followed by mixing more (5.4%).
 
 #by test result 
 QTNDres %>%
