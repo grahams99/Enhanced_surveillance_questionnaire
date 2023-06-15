@@ -1,4 +1,27 @@
 #Enhanced Surveillance Questionnaire 
+#========================================================================= 
+#  
+#  AUTHOR:                                         Sophie Graham
+#
+#DATE:                                             June 2023 
+#
+#VERSION:                                          R Version 4.2.4 
+#
+#R script name:                                    Surveillance_Questionnaire_R_Script_github.R
+#
+#STATUS:                                           Finalised for Github repo 
+#
+#DATASETS USED:                                    NIMS and SGSS linked to questionnaire data        
+#
+#DESCRIPTION OF FILE:                              * Reads in the data
+#                                                  * Sets variable classes
+#                                                  * Provides a description of patients that are vaccinated versus non-vaccinated and cases versus negative controls
+#                                                  * Provides a description for each potential bias
+#                                                  * Updates the model accounting for each potential bias separately
+#                                                  * Updates the full model accounting for all potential biases at once
+#
+#********************************************************************* 
+
 
 #set working directory
 setwd("[removed for UKHSA privacy reasons]") 
